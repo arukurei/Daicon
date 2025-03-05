@@ -7,3 +7,11 @@ Its principle is to use 3D space to move 2D objects. In this way it simulates t
 The addon provides the developer with a set of new nodes and additional tools that combine 3D and 2D capabilities simultaneously.
 
 # Links & Support
+
+Documentation: 
+
+ItchIO: 
+
+Bluesky: https://bsky.app/profile/arukurei.bsky.social
+
+Telegram: https://t.me/G_Quasar
