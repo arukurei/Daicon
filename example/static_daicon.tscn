@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo8sog8wpw4n4"]
+
+[ext_resource type="Script" uid="uid://bfjbmpj62t2o7" path="res://addons/daicon/nodes/static_daicon_node.gd" id="1_kumnq"]
+[ext_resource type="Texture2D" uid="uid://c8yh603f8hoqt" path="res://example/assets/basic.png" id="2_hf6pr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kumnq"]
+size = Vector3(1.125, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hf6pr"]
+size = Vector3(1.125, 1, 1)
+
+[node name="StaticDaicon" type="StaticBody2D" node_paths=PackedStringArray("mesh", "shape")]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_kumnq")
+tile_size = 16
+mesh = NodePath("StaticBody3D/Mesh")
+shape = NodePath("StaticBody3D/Shape")
+child_count = 6
+mesh_properties = {
+"CastShadow": 1,
+"CustomAABB": AABB(0, 0, 0, 0, 0, 0),
+"ExtraCullMargin": 0.0,
+"GILightmapScale": 0,
+"GIMode": 1,
+"IgnoreOcclusionCulling": false,
+"LODBais": 1.0,
+"Layers": 1,
+"MaterialOverlay": null,
+"MaterialOverride": null,
+"Mesh": SubResource("BoxMesh_kumnq"),
+"Name": &"Mesh",
+"Position": Vector3(0, 0.5, 0),
+"Rotation": Vector3(0, 0, 0),
+"RotationEditMode": 0,
+"RotationOrder": 2,
+"Scale": Vector3(1, 1, 1),
+"Skeleton": NodePath("../.."),
+"Skin": null,
+"SortingOffset": 0.0,
+"SortingUseAABBCenter": true,
+"TopLevel": false,
+"Transparency": 0.0,
+"VisibilityRangeBegin": 0.0,
+"VisibilityRangeBeginMargin": 0.0,
+"VisibilityRangeEnd": 0.0,
+"VisibilityRangeEndMargin": 0.0,
+"VisibilityRangeFadeMode": 0
+}
+shape_properties = {
+"Disabled": false,
+"Name": &"Shape",
+"Position": Vector3(0, 0.5, 0),
+"Rotation": Vector3(0, 0, 0),
+"RotationEditMode": 0,
+"RotationOrder": 2,
+"Scale": Vector3(1, 1, 1),
+"Shape": SubResource("BoxShape3D_hf6pr"),
+"TopLevel": false
+}
+layer = 0
+metadata/_custom_type_script = "uid://bfjbmpj62t2o7"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hf6pr")
+offset = Vector2(0, -8)
+flip_h = true
+hframes = 10
+vframes = 16
