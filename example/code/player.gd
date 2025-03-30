@@ -8,6 +8,8 @@ const accelaration = 20
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var animation = animation_tree.get("parameters/playback")
 
+var movement_input := Vector2.ZERO
+
 func _ready() -> void:
 	super._ready()
 	
@@ -19,18 +21,16 @@ func _validate_property(property: Dictionary) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
-		var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		var direction := Vector3(input_dir.x, 0, input_dir.y).normalized()
+		movement_input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var direction := Vector3(movement_input.x, 0, movement_input.y).normalized()
 		if direction != Vector3.ZERO:
-			set_animation_direction(input_dir)
+			set_animation_direction(movement_input)
 		
 		var y_vel = d3.velocity.y
-		d3.velocity.y = 0.0
 		d3.velocity = d3.velocity.move_toward(direction * SPEED, accelaration * delta)
 		d3.velocity.y = y_vel - gravity * delta
 		
-		var is_starting_jumping = Input.is_action_just_pressed("ui_accept") and d3.is_on_floor()
-		if is_starting_jumping:
+		if Input.is_action_just_pressed("ui_accept") and d3.is_on_floor():
 			d3.velocity.y += JUMP_VELOCITY
 			
 		d3.move_and_slide()

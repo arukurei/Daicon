@@ -566,6 +566,7 @@ blend_point_6/pos = Vector2(0.5, -0.5)
 blend_point_7/node = SubResource("AnimationNodeAnimation_jeos5")
 blend_point_7/pos = Vector2(-0.5, -0.5)
 snap = Vector2(0.5, 0.5)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_php6x"]
 animation = &"Jump Down Left"
@@ -609,6 +610,7 @@ blend_point_6/pos = Vector2(0.5, -0.5)
 blend_point_7/node = SubResource("AnimationNodeAnimation_spqdm")
 blend_point_7/pos = Vector2(-0.5, -0.5)
 snap = Vector2(0.5, 0.5)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hj5hq"]
 animation = &"Jump Left"
@@ -652,6 +654,7 @@ blend_point_6/pos = Vector2(-0.5, -0.5)
 blend_point_7/node = SubResource("AnimationNodeAnimation_o4ahu")
 blend_point_7/pos = Vector2(0.5, -0.5)
 snap = Vector2(0.5, 0.5)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ytvxd"]
 animation = &"Run Left"
@@ -695,6 +698,7 @@ blend_point_6/pos = Vector2(0.5, -0.5)
 blend_point_7/node = SubResource("AnimationNodeAnimation_8kt3s")
 blend_point_7/pos = Vector2(-0.5, -0.5)
 snap = Vector2(0.5, 0.5)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fxcic"]
 switch_mode = 1
@@ -743,11 +747,13 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_fxg1g")
 states/Move/position = Vector2(525, 59)
 transitions = ["Idle", "Move", SubResource("AnimationNodeStateMachineTransition_fxcic"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_vaujd"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_7t7hr"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_bfffl"), "Move", "Jump Down", SubResource("AnimationNodeStateMachineTransition_cfud7"), "Jump Down", "Move", SubResource("AnimationNodeStateMachineTransition_k30ru"), "Idle", "Jump Down", SubResource("AnimationNodeStateMachineTransition_86v13"), "Jump Down", "Idle", SubResource("AnimationNodeStateMachineTransition_dn4a2"), "Move", "Jump", SubResource("AnimationNodeStateMachineTransition_1t77o"), "Jump", "Move", SubResource("AnimationNodeStateMachineTransition_3f3te"), "Jump", "Jump Down", SubResource("AnimationNodeStateMachineTransition_c8uvk"), "Jump Down", "Jump", SubResource("AnimationNodeStateMachineTransition_8ga6c")]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("mesh", "shape")]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_rxg4x")
 tile_size = 16
+mesh = NodePath("KinematicBody3D/Mesh")
+shape = NodePath("KinematicBody3D/Shape")
 child_count = 6
 mesh_properties = {
 "CastShadow": 1,

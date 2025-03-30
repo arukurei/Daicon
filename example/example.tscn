@@ -136,9 +136,7 @@ material = SubResource("ShaderMaterial_8a8t6")
 tile_map_data = PackedByteArray("AAAIAAYAAAAEAAAAAAAJAAYAAAAAAAAAAAAKAAYAAAAAAAAAAAALAAYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_8clr1")
 
-[node name="Player" parent="." node_paths=PackedStringArray("mesh", "shape") instance=ExtResource("5_scst5")]
-mesh = NodePath("KinematicBody3D/Mesh")
-shape = NodePath("KinematicBody3D/Shape")
+[node name="Player" parent="." instance=ExtResource("5_scst5")]
 
 [node name="StaticDaicon" parent="." instance=ExtResource("7_6rqat")]
 z_index = 0
