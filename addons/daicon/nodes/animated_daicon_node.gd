@@ -2,7 +2,7 @@
 @icon("res://addons/daicon/icons/animated_daicon.svg")
 class_name AnimatedDaicon extends AnimatableBody2D
 
-var d3 : StaticBody3D
+var d3 : AnimatableBody3D
 var right_whisker : RayCast3D
 var left_whisker : RayCast3D
 var center_whisker : RayCast3D
@@ -291,7 +291,7 @@ var shader_cast : RayCast3D
 
 #region Core Exports
 
-@export_category("StaticBody3D")
+@export_category("AnimatedBody3D")
 @export var sync_to_physics_3d: bool = true:
 	set(value):
 		if d3: d3.sync_to_physics = value
@@ -740,8 +740,8 @@ func _expand()  -> void:
 	_expand_slots()
 
 func _expand_d3() -> void:
-	d3 = StaticBody3D.new()
-	d3.set_name("StaticBody3D")
+	d3 = AnimatableBody3D.new()
+	d3.set_name("AnimatableBody3D")
 	add_child(d3)
 	move_child(d3, 0)
 	d3 = get_child(0)

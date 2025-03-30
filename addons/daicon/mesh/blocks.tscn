@@ -90,55 +90,55 @@ shape = SubResource("ConcavePolygonShape3D_tlfnc")
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Block" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Block/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_fcayq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Flat Block  L-Up Corner" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flat Block  L-Up Corner/StaticBody3D" index="0"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0.5, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("ConcavePolygonShape3D_cun5e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Flat Block  R-Up Corner" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flat Block  R-Up Corner/StaticBody3D" index="0"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.5, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
 shape = SubResource("ConcavePolygonShape3D_6bmee")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Flat Block R-Down Corner" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flat Block R-Down Corner/StaticBody3D" index="0"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.5, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 shape = SubResource("ConcavePolygonShape3D_n48pc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Flat Block Up" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flat Block Up/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 shape = SubResource("ConcavePolygonShape3D_cgu1n")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Flat Block Down" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flat Block Down/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 shape = SubResource("ConcavePolygonShape3D_8kvap")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Flat Block L" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flat Block L/StaticBody3D" index="0"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_awy1h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Flat Block L-Down Corner" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flat Block L-Down Corner/StaticBody3D" index="0"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0.5, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
 shape = SubResource("ConcavePolygonShape3D_lw4xl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Flat Block R" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Flat Block R/StaticBody3D" index="0"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_ieqvx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Plane Down" index="0"]
@@ -164,31 +164,31 @@ shape = SubResource("ConcavePolygonShape3D_a13xn")
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Plane  Down" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Plane  Down/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_n7ivo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Plane  Up" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Plane  Up/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_fsxmr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Plane L" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Plane L/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_e0gik")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Plane R" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Plane R/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_qg3sa")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Flat Block Up" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Flat Block Up/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
 shape = SubResource("ConcavePolygonShape3D_laia4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Flat Block R-Down Corner" index="0"]
@@ -200,7 +200,7 @@ shape = SubResource("ConcavePolygonShape3D_apd8p")
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Flat Block R" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Flat Block R/StaticBody3D" index="0"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1, -0.5, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_7faco")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Flat Block L-Down Corner" index="0"]
@@ -212,13 +212,13 @@ shape = SubResource("ConcavePolygonShape3D_cfcr3")
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Flat Block L" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Flat Block L/StaticBody3D" index="0"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1, 0.5, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
 shape = SubResource("ConcavePolygonShape3D_ih676")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Flat Block Down" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Half Flat Block Down/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
 shape = SubResource("ConcavePolygonShape3D_g0i3e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Half Flat Block  R-Up Corner" index="0"]
