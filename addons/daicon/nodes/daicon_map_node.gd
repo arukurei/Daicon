@@ -20,6 +20,18 @@ var _cells_count : int
 		physics_material = library
 	get():
 		return physics_material
+## Z-step in sortable system between height levels.
+@export var z_step : int = 10:
+	set(step):
+		z_step = step
+	get():
+		return z_step
+@export var visible_3d: bool = true:
+	set(value):
+		if grid_map: grid_map.visible = value
+		visible_3d = value
+	get():
+		return visible_3d
 
 @export_group("Cell")
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var size: Vector3 = Vector3(1, 1, 1):
@@ -117,13 +129,13 @@ func get_cells() -> int:
 func update_grid_map():
 	grid_map.clear()
 	for layer_index in range(0, get_layers_count()):
-		var z = get_layer_z_index(layer_index)
+		var z = get_layer_z_index(layer_index) / z_step
 		for tile in get_used_cells(layer_index):
 			var tile_data = get_cell_tile_data(layer_index, Vector2(tile.x, tile.y))
 			grid_map.set_cell_item(Vector3(tile.x, z-1, tile.y+z), tile_data.get_custom_data("Item"))
 	for layer in get_children():
 		if layer is TileMapLayer:
-			var z = layer.z_index
+			var z = layer.z_index / z_step
 			for tile in layer.get_used_cells():
 				var tile_data = layer.get_cell_tile_data(Vector2(tile.x, tile.y))
 				grid_map.set_cell_item(Vector3(tile.x, z-1, tile.y+z), tile_data.get_custom_data("Item"))

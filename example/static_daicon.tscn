@@ -1,23 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo8sog8wpw4n4"]
+[gd_scene load_steps=9 format=3 uid="uid://bo8sog8wpw4n4"]
 
-[ext_resource type="Script" uid="uid://bfjbmpj62t2o7" path="res://addons/daicon/nodes/static_daicon_node.gd" id="1_kumnq"]
+[ext_resource type="Script" uid="uid://bdlkwnwao7rg5" path="res://addons/daicon/nodes/static_daicon_node.gd" id="1_kumnq"]
 [ext_resource type="Texture2D" uid="uid://c8yh603f8hoqt" path="res://example/assets/basic.png" id="2_hf6pr"]
+[ext_resource type="Texture2D" uid="uid://bwnwa7yih5ous" path="res://example/assets/shadow.png" id="3_8l230"]
+[ext_resource type="Script" uid="uid://geccrkqt6jtq" path="res://addons/daicon/nodes/daicon_shadow.gd" id="4_l47av"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kumnq"]
-size = Vector3(1.125, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8l230"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hf6pr"]
-size = Vector3(1.125, 1, 1)
+size = Vector3(0.9, 0.9, 0.9)
 
-[node name="StaticDaicon" type="StaticBody2D" node_paths=PackedStringArray("mesh", "shape")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_l47av"]
+size = Vector3(1, 0, 1)
+
+[node name="StaticDaicon" type="StaticBody2D" node_paths=PackedStringArray("mesh", "shape", "whisker_shape")]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_kumnq")
 tile_size = 16
 mesh = NodePath("StaticBody3D/Mesh")
 shape = NodePath("StaticBody3D/Shape")
-child_count = 6
+current_mesh = SubResource("BoxMesh_kumnq")
+current_shape = SubResource("BoxShape3D_8l230")
+child_count = 4
 mesh_properties = {
+"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
 "CastShadow": 1,
 "CustomAABB": AABB(0, 0, 0, 0, 0, 0),
 "ExtraCullMargin": 0.0,
@@ -30,12 +39,13 @@ mesh_properties = {
 "MaterialOverride": null,
 "Mesh": SubResource("BoxMesh_kumnq"),
 "Name": &"Mesh",
-"Position": Vector3(0, 0.5, 0),
+"Position": Vector3(0, 0, 0),
+"Quaternion": Quaternion(0, 0, 0, 1),
 "Rotation": Vector3(0, 0, 0),
 "RotationEditMode": 0,
 "RotationOrder": 2,
 "Scale": Vector3(1, 1, 1),
-"Skeleton": NodePath("../.."),
+"Skeleton": NodePath(".."),
 "Skin": null,
 "SortingOffset": 0.0,
 "SortingUseAABBCenter": true,
@@ -48,22 +58,77 @@ mesh_properties = {
 "VisibilityRangeFadeMode": 0
 }
 shape_properties = {
+"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
 "Disabled": false,
 "Name": &"Shape",
-"Position": Vector3(0, 0.5, 0),
+"Position": Vector3(0, 0, 0),
+"Quaternion": Quaternion(0, 0, 0, 1),
 "Rotation": Vector3(0, 0, 0),
 "RotationEditMode": 0,
 "RotationOrder": 2,
 "Scale": Vector3(1, 1, 1),
-"Shape": SubResource("BoxShape3D_hf6pr"),
+"Shape": SubResource("BoxShape3D_8l230"),
 "TopLevel": false
 }
-layer = 0
-metadata/_custom_type_script = "uid://bfjbmpj62t2o7"
+whisker_shape = NodePath("StaticBody3D/Whisker/Shape")
+whisker_shape_properties = {
+"Class": "CollisionShape3D",
+"Name": &"Shape",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"debug_fill": true,
+"disabled": false,
+"editor_description": "",
+"physics_interpolation_mode": 0,
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation_edit_mode": 0,
+"rotation_order": 2,
+"script": null,
+"shape": SubResource("BoxShape3D_hf6pr"),
+"top_level": false,
+"transform": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true
+}
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
 texture = ExtResource("2_hf6pr")
 offset = Vector2(0, -8)
 flip_h = true
 hframes = 10
 vframes = 16
+
+[node name="DaiconShadow" type="Sprite2D" parent="." node_paths=PackedStringArray("daicon_parent", "shape")]
+show_behind_parent = true
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, 8)
+texture = ExtResource("3_8l230")
+script = ExtResource("4_l47av")
+daicon_parent = NodePath("..")
+tile_size = 16
+min_distance = 0.5
+stream_mode = 1
+shape = NodePath("KinematicBody3D/ShadowShape")
+current_shape = SubResource("BoxShape3D_l47av")
+shape_properties = {
+"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
+"Disabled": false,
+"Name": &"ShadowShape",
+"Position": Vector3(0, 0, 0),
+"Quaternion": Quaternion(0, 0, 0, 1),
+"Rotation": Vector3(0, 0, 0),
+"RotationEditMode": 0,
+"RotationOrder": 2,
+"Scale": Vector3(1, 1, 1),
+"Shape": SubResource("BoxShape3D_l47av"),
+"TopLevel": false
+}
+metadata/_custom_type_script = "uid://geccrkqt6jtq"

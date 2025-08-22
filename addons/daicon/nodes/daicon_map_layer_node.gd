@@ -18,6 +18,12 @@ var grid_map : GridMap
 		physics_material = library
 	get():
 		return physics_material
+@export var visible_3d: bool = true:
+	set(value):
+		if grid_map: grid_map.visible = value
+		visible_3d = value
+	get():
+		return visible_3d
 
 @export_group("Cell")
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var size: Vector3 = Vector3(1, 1, 1):

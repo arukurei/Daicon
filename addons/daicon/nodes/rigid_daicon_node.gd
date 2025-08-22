@@ -1,15 +1,15 @@
 @tool
-@icon("res://addons/daicon/icons/static_daicon.svg")
-class_name AnimatedDaicon extends AnimatableBody2D
+@icon("res://addons/daicon/icons/rigid_daicon.svg")
+class_name RigidDaicon extends CharacterBody2D
 
-var d3 : AnimatableBody3D
+var d3 : RigidBody3D
 
 var whisker : Area3D
 var shader_cast : RayCast3D
 
-#region StaticDaicon Exports
+#region KinematicDaicon Exports
 
-## Tile Size determines how many pixels equal 1 meter in 3D.[br](basically it is the tile size per cell size in 3D)
+## Tile Size determines how many pixels equal 1 meter in 3D.[br] (basically it is the tile size per cell size in 3D)
 @export var tile_size : int:
 	set(size):
 		if size > 0:
@@ -26,17 +26,11 @@ var shader_cast : RayCast3D
 	get():
 		return y_3d
 ## Z-step in sortable system between height levels.
-@export var z_step : int = 10:
+@export var z_step : int = 16:
 	set(step):
 		z_step = step
 	get():
 		return z_step
-## Object max 3D height in blocks (meters). Used in sortable system as coef.
-@export var z_sort_coef : int = 1:
-	set(coef):
-		z_sort_coef = coef
-	get():
-		return z_sort_coef
 ## Mesh 3D
 @export var mesh : MeshInstance3D:
 	set(node): 
@@ -363,30 +357,162 @@ var shader_cast : RayCast3D
 
 #region Core Exports
 
-@export_category("StaticBody3D")
-@export var sync_to_physics_3d: bool = true:
+@export_category("RigidBody3D")
+@export_custom(PROPERTY_HINT_RANGE, "0.001,1000,or_greater,suffix:kg,exp") var mass: float = 1.0:
 	set(value):
-		if d3: d3.sync_to_physics = value
-		sync_to_physics_3d = value
+		if d3: d3.mass = value
+		mass = value
 	get():
-		return sync_to_physics_3d
-@export var physics_material_override_3d : PhysicsMaterial:
+		return mass
+@export var physics_material_override : PhysicsMaterial:
 	set(material):
-		pass
+		if d3: d3.physics_material_override = material
+		physics_material_override = material
 	get():
-		return physics_material_override_3d
-@export_custom(PROPERTY_HINT_NONE, "suffix:m/s") var constant_linear_velocity_3d: Vector3 = Vector3(0, 0, 0):
+		return physics_material_override
+@export_custom(PROPERTY_HINT_RANGE, "-8.0,8.0,or_less,or_greater,exp") var gravity_scale: float = 1.0:
+	set(value):
+		if d3: d3.gravity_scale = value
+		gravity_scale = value
+	get():
+		return gravity_scale
+
+@export_group("Mass Distribution")
+@export_enum("Auto", "Custom") var center_of_mass_mode: int = 0:
+	set(mode):
+		if mode == 0: center_of_mass = Vector3(0, 0, 0)
+		if d3: d3.center_of_mass_mode = mode
+		center_of_mass_mode = mode
+		property_list_changed.emit()
+	get():
+		return center_of_mass_mode
+@export_custom(PROPERTY_HINT_RANGE, "-10,10,0.01,or_less,or_greater,suffix:m") var center_of_mass: Vector3 = Vector3(0, 0, 0):
 	set(v_3):
-		if d3: d3.constant_linear_velocity = v_3
-		constant_linear_velocity_3d = v_3
+		if center_of_mass_mode == 1:
+			if d3: d3.center_of_mass = v_3
+			center_of_mass = v_3
 	get():
-		return constant_linear_velocity_3d
-@export_custom(PROPERTY_HINT_NONE, "suffix:°/s") var constant_angular_velocity_3d: Vector3 = Vector3(0, 0, 0):
+		return center_of_mass
+@export_custom(PROPERTY_HINT_RANGE, "0,1000,or_greater,suffix:kg · m^2") var inertia: Vector3 = Vector3(0, 0, 0):
 	set(v_3):
-		if d3: d3.constant_angular_velocity = v_3
-		constant_angular_velocity_3d = v_3
+		if v_3.x >= 0 and v_3.y >= 0 and v_3.z >= 0:
+			if d3: d3.inertia = v_3
+			inertia = v_3
 	get():
-		return constant_angular_velocity_3d
+		return inertia
+
+@export_group("Deactivation")
+@export var sleeping: bool = false:
+	set(value):
+		if d3: d3.sleeping = value
+		sleeping = value
+	get():
+		return sleeping
+@export var can_sleep: bool = true:
+	set(value):
+		if d3: d3.can_sleep = value
+		can_sleep = value
+	get():
+		return can_sleep
+@export var lock_rotation: bool = false:
+	set(value):
+		if d3: d3.lock_rotation = value
+		lock_rotation = value
+	get():
+		return lock_rotation
+@export var freeze: bool = false:
+	set(value):
+		if d3: d3.freeze = value
+		freeze = value
+	get():
+		return freeze
+@export_enum("Static", "Kinematic") var freeze_mode: int = 0:
+	set(mode):
+		if d3: d3.freeze_mode = mode
+		freeze_mode = mode
+	get():
+		return freeze_mode
+
+@export_group("Solver")
+@export var custom_integrator: bool = false:
+	set(value):
+		if d3: d3.custom_integrator = value
+		custom_integrator = value
+	get():
+		return custom_integrator
+@export var continuous_cd: bool = false:
+	set(value):
+		if d3: d3.continuous_cd = value
+		continuous_cd = value
+	get():
+		return continuous_cd
+@export var contact_monitor: bool = false:
+	set(value):
+		if d3: d3.contact_monitor = value
+		contact_monitor = value
+		property_list_changed.emit()
+	get():
+		return contact_monitor
+@export var max_contacts_reported: int = 0:
+	set(value):
+		if d3: d3.max_contacts_reported = value
+		max_contacts_reported = value
+	get():
+		return max_contacts_reported
+
+@export_group("Linear")
+@export_custom(PROPERTY_HINT_NONE, "0,1000,or_less,or_greater,suffix:m/s") var linear_velocity: Vector3 = Vector3(0, 0, 0):
+	set(v_3):
+		if d3: d3.linear_velocity = v_3
+		linear_velocity = v_3
+	get():
+		return linear_velocity
+@export_enum("Combine", "Replace") var linear_damp_mode: int = 0:
+	set(mode):
+		if d3: d3.linear_damp_mode = mode
+		linear_damp_mode = mode
+	get():
+		return linear_damp_mode
+@export_custom(PROPERTY_HINT_RANGE, "0,100,or_greater") var linear_damp: float = 0.0:
+	set(value):
+		if d3: d3.linear_damp = value
+		linear_damp = value
+	get():
+		return linear_damp
+
+@export_group("Angular")
+@export_custom(PROPERTY_HINT_NONE, "0,1000,or_less,or_greater,suffix:°/s") var angular_velocity: Vector3 = Vector3(0, 0, 0):
+	set(v_3):
+		if d3: d3.angular_velocity = v_3
+		angular_velocity = v_3
+	get():
+		return angular_velocity
+@export_enum("Combine", "Replace") var angular_damp_mode: int = 0:
+	set(mode):
+		if d3: d3.angular_damp_mode = mode
+		angular_damp_mode = mode
+	get():
+		return angular_damp_mode
+@export_custom(PROPERTY_HINT_RANGE, "0,100,or_greater") var angular_damp: float = 0.0:
+	set(value):
+		if d3: d3.angular_damp = value
+		angular_damp = value
+	get():
+		return angular_damp
+
+@export_group("Constant Forces")
+@export_custom(PROPERTY_HINT_NONE, "0,1000,or_less,or_greater,suffix:kg · m^2/s") var constant_force: Vector3 = Vector3(0, 0, 0):
+	set(v_3):
+		if d3: d3.constant_force = v_3
+		constant_force = v_3
+	get():
+		return constant_force
+@export_custom(PROPERTY_HINT_NONE, "0,1000,or_less,or_greater,suffix:kg · m^2/s") var constant_torque: Vector3 = Vector3(0, 0, 0):
+	set(v_3):
+		if d3: d3.constant_torque = v_3
+		constant_torque = v_3
+	get():
+		return constant_torque
 
 @export_group("Transorm")
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var offset_3d: Vector3 = Vector3(0, 0.5, 0):
@@ -717,7 +843,6 @@ func _ready() -> void:
 		self.z_index = 1
 		tile_size = 16
 	_expand()
-	d3.set_meta("z_index", self.z_index)
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		if not d3:
@@ -726,20 +851,21 @@ func _process(delta: float) -> void:
 			d3.position.x = (self.position.x / tile_size) + offset_3d.x
 		if self.position.y != ((d3.position.z - offset_3d.z) - (d3.position.y - offset_3d.y)) * tile_size:
 			d3.position.z = ((self.position.y / tile_size) + (d3.position.y - offset_3d.y)) + offset_3d.z
-	elif not Engine.is_editor_hint():
-		_update_z_index()
+func _physics_process(delta: float) -> void:
+	if not Engine.is_editor_hint():
+		_update_pos()
 
-func update_pos():
+func _update_pos(coef = 1):
 	self.position.x = (d3.position.x - offset_3d.x) * tile_size
 	self.position.y = ((d3.position.z - offset_3d.z) - (d3.position.y - offset_3d.y)) * tile_size
-func _update_z_index():
+	
 	if whisker.get_overlapping_bodies():
 		if whisker.get_overlapping_bodies()[0].has_meta("z_index"):
 			self.z_index = whisker.get_overlapping_bodies()[0].get_meta("z_index") - 1
 		else:
 			self.z_index = (int(d3.position.y + (offset_3d.y * 1.1))) * z_step - 1
 	else:
-		self.z_index = ((d3.position.y - offset_3d.y) + z_sort_coef) * z_step + 2
+		self.z_index = ((d3.position.y - offset_3d.y) + coef) * z_step + 2
 	
 	d3.set_meta("z_index", self.z_index)
 
@@ -755,6 +881,20 @@ func get_node_properties(node: Node) -> Dictionary:
 	return properties
 func _validate_property(property: Dictionary) -> void:
 	if not d3: return
+	
+	#center of mass mode
+	if property.name == "center_of_mass":
+		if center_of_mass_mode == 0:
+			property.usage &= ~PROPERTY_USAGE_EDITOR
+		elif center_of_mass_mode == 1:
+			property.usage |= PROPERTY_USAGE_EDITOR
+	
+	#contact monitor
+	if property.name == "max_contacts_reported":
+		if contact_monitor == true:
+			property.usage |= PROPERTY_USAGE_EDITOR
+		elif contact_monitor == false:
+			property.usage &= ~PROPERTY_USAGE_EDITOR
 	
 	#rotation mode
 	if property.name in quaternion_properties:
@@ -779,25 +919,34 @@ func _expand() -> void:
 	_expand_slots()
 
 func _expand_d3() -> void:
-	d3 = AnimatableBody3D.new()
-	d3.set_name("AnimatableBody3D")
+	d3 = RigidBody3D.new()
+	d3.set_name("RigidBody3D")
 	add_child(d3)
 	move_child(d3, 0)
 	d3 = get_child(0)
 	
-	d3.sync_to_physics = sync_to_physics_3d
-	d3.physics_material_override = physics_material_override_3d
-	d3.constant_linear_velocity = constant_linear_velocity_3d
-	d3.constant_angular_velocity = constant_angular_velocity_3d
-	d3.rotation = rotation_3d
-	d3.scale = scale_3d
+	d3.mass = mass
+	d3.physics_material_override = physics_material_override
+	d3.gravity_scale = gravity_scale
 	
-	d3.disable_mode = disable_mode_3d
-	d3.collision_layer = layer
-	d3.collision_mask = mask
-	d3.collision_priority = priority
-	d3.input_ray_pickable = ray_pickable
-	d3.input_capture_on_drag = capture_on_drag
+	d3.center_of_mass_mode = center_of_mass_mode
+	d3.inertia = inertia
+	d3.sleeping = sleeping
+	d3.can_sleep = can_sleep
+	d3.lock_rotation = lock_rotation
+	d3.freeze = freeze
+	d3.freeze_mode = freeze_mode
+	d3.custom_integrator = custom_integrator
+	d3.continuous_cd = continuous_cd
+	d3.contact_monitor = contact_monitor
+	
+	d3.linear_velocity = linear_velocity
+	d3.linear_damp_mode = linear_damp_mode
+	d3.linear_damp = linear_damp
+	
+	d3.angular_velocity = angular_velocity
+	d3.angular_damp_mode = angular_damp_mode
+	d3.angular_damp = angular_damp
 	
 	d3.axis_lock_linear_x = linear_x
 	d3.axis_lock_linear_y = linear_y
@@ -805,6 +954,14 @@ func _expand_d3() -> void:
 	d3.axis_lock_angular_x = angular_x
 	d3.axis_lock_angular_y = angular_y
 	d3.axis_lock_angular_z = angular_z
+
+	d3.disable_mode = disable_mode_3d
+	d3.collision_layer = layer
+	d3.collision_mask = mask
+	d3.collision_priority = priority
+	
+	d3.input_ray_pickable = ray_pickable
+	d3.input_capture_on_drag = capture_on_drag
 	
 	d3.position.y = y_3d + offset_3d.y
 	d3.position.x = (self.position.x / tile_size) + offset_3d.x

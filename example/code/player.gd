@@ -37,10 +37,10 @@ func _physics_process(delta: float) -> void:
 		player_animation(direction, d3.velocity)
 		update_pos()
 
-func player_animation(direction, velocity):
-	if velocity == Vector3.ZERO:
+func player_animation(direction, d3_velocity):
+	if d3_velocity == Vector3.ZERO:
 		animation.travel("Idle")
-	elif velocity != Vector3.ZERO:
+	elif d3_velocity != Vector3.ZERO:
 		if direction:
 			if d3.is_on_floor():
 				animation.travel("Move")

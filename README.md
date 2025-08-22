@@ -1,4 +1,4 @@
-![title](https://github.com/user-attachments/assets/25dedc49-25eb-481c-9082-4cc5225ec36e)
+![1-5 version.png](addons/daicon/press_kit/1-5%20version.png)
 
 # Daicon
 
@@ -17,5 +17,9 @@ The addon provides the developer with a set of new nodes and additional tools th
 - [Bluesky](https://bsky.app/profile/arukurei.bsky.social)
 
 - [Telegram](https://t.me/G_Quasar)
+
+- [YouTube](https://www.youtube.com/@arukurei)
+
+- [Discord](https://discord.gg/663eYk5ZGA)
 
 If you like Daicon and want to support its development, you can donate to the project via [PayPal](https://www.paypal.com/donate/?hosted_button_id=LF5SHGQDXK2PG) or [ItchIO](https://alkrei.itch.io/daicon). Your support is very much appreciated and helps keep the project going!
