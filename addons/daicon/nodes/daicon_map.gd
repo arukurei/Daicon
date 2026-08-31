@@ -1,10 +1,12 @@
 @tool
-@icon("res://addons/daicon/icons/daicon_map_layer.svg")
-class_name DaiconMapLayer extends TileMapLayer
+@icon("res://addons/daicon/icons/daicon_map.svg")
+class_name DaiconMap extends TileMap
 
 var grid_map : GridMap
+var cells_count : int = get_cells()
+var _cells_count : int
 
-#region DaiconMapLayer Exports
+#region DaiconMap Exports
 
 @export var mesh_library : MeshLibrary:
 	set(library):
@@ -18,6 +20,12 @@ var grid_map : GridMap
 		physics_material = library
 	get():
 		return physics_material
+## Z-step in sortable system between height levels.
+@export var z_step : int = 10:
+	set(step):
+		z_step = step
+	get():
+		return z_step
 @export var visible_3d: bool = true:
 	set(value):
 		if grid_map: grid_map.visible = value
@@ -72,7 +80,9 @@ var grid_map : GridMap
 func _ready() -> void:
 	if not tile_set:
 		self.set_y_sort_enabled(true)
-		self.tile_set = TileSet.new()
+		self.set_layer_y_sort_enabled(0, true)
+		
+		self.set_tileset(TileSet.new())
 		self.tile_set.add_custom_data_layer(0)
 		self.tile_set.set_custom_data_layer_name(0, "Item")
 		self.tile_set.set_custom_data_layer_type(0, TYPE_INT)
@@ -99,15 +109,32 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
-		if len(get_used_cells()) != len(grid_map.get_used_cells()):
+		cells_count = get_cells()
+		if cells_count != len(grid_map.get_used_cells()):
 			update_grid_map()
 		if position.x != grid_map.position.x * tile_set.tile_size.x:
 			grid_map.position.x = position.x / tile_set.tile_size.x
 		if position.y != grid_map.position.z * tile_set.tile_size.y:
-			grid_map.position.z = position.y / tile_set.tile_size.y -0.5
+			grid_map.position.z = position.y / tile_set.tile_size.y - 0.5
+
+func get_cells() -> int:
+	_cells_count = 0
+	for layer_index in range(0, get_layers_count()):
+		_cells_count += len(get_used_cells(layer_index))
+	for layer in get_children():
+		if layer is TileMapLayer: _cells_count += len(layer.get_used_cells())
+	return _cells_count
 
 func update_grid_map():
 	grid_map.clear()
-	for tile in get_used_cells():
-		var tile_data = get_cell_tile_data(Vector2(tile.x, tile.y))
-		grid_map.set_cell_item(Vector3(tile.x, z_index-1, tile.y+z_index), tile_data.get_custom_data("Item"))
+	for layer_index in range(0, get_layers_count()):
+		var z = get_layer_z_index(layer_index) / z_step
+		for tile in get_used_cells(layer_index):
+			var tile_data = get_cell_tile_data(layer_index, Vector2(tile.x, tile.y))
+			grid_map.set_cell_item(Vector3(tile.x, z-1, tile.y+z), tile_data.get_custom_data("Item"))
+	for layer in get_children():
+		if layer is TileMapLayer:
+			var z = layer.z_index / z_step
+			for tile in layer.get_used_cells():
+				var tile_data = layer.get_cell_tile_data(Vector2(tile.x, tile.y))
+				grid_map.set_cell_item(Vector3(tile.x, z-1, tile.y+z), tile_data.get_custom_data("Item"))

@@ -1,29 +1,29 @@
 shader_type canvas_item;
 
-// needs to match the number of values being sent
 const int MAX_POSITIONS = 100;
 
 uniform vec2 CircleCentres[MAX_POSITIONS];
 uniform int NumCircleCentres : hint_range(0, 100, 1) = 0;
 uniform float CircleRadius = 100.0;
-uniform float CircleBlur : hint_range(0.0, 1.0, 0.01) = 0.01;
+uniform float CircleBlur : hint_range(0.0, 1.0, 0.01) = 0.4; // Дефолт 0.4 (40% блюра)
 
 void fragment()
 {
 	float circle_signal = 0.0;
-	// loop over possible centres
-	for ( int i = 0; i < NumCircleCentres; ++i )
+	
+	// Внутренний радиус, где круг 100% прозрачный:
+	float inner_radius = CircleRadius * (1.0 - clamp(CircleBlur, 0.0, 1.0));
+	
+	for (int i = 0; i < NumCircleCentres; ++i)
 	{
-	// compute distance between fragment and circle centre
-	float circle_blur = clamp( 0.0, 1.0, CircleBlur );
-	float circle_dist = distance( CircleCentres[i], FRAGCOORD.xy );
-	// compute signal based on circle radius
-	circle_signal = max( circle_signal, smoothstep( CircleRadius, CircleRadius*(1.0-circle_blur), circle_dist ) );
+		float circle_dist = distance(CircleCentres[i], FRAGCOORD.xy);
+		
+		// Плавный переход от полной прозрачности (inner) до непрозрачности (outer)
+		float mask = 1.0 - smoothstep(inner_radius, CircleRadius, circle_dist);
+		circle_signal = max(circle_signal, mask);
 	}
-	// read the base texture color
-	vec4 tex_color = texture( TEXTURE, UV );
-	// set output color to the read texture value
+	
+	vec4 tex_color = texture(TEXTURE, UV);
 	COLOR = tex_color;
-	// now modify the alpha by the circle
-	COLOR.a *= ( 1.0 - circle_signal );
+	COLOR.a *= (1.0 - circle_signal);
 }

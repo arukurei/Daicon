@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=4 uid="uid://ckqo7xx5ntlpq"]
 
-[ext_resource type="Script" uid="uid://ds6hjghkuhoej" path="res://example/code/example.gd" id="1_wmyp6"]
-[ext_resource type="Texture2D" uid="uid://dldfpbgt8823o" path="res://example/assets/tileset.png" id="2_8clr1"]
-[ext_resource type="Script" uid="uid://baffwcreehsd7" path="res://addons/daicon/nodes/daicon_map_node.gd" id="2_pjyox"]
+[ext_resource type="Script" uid="uid://c12yxbiou142g" path="res://example/code/example.gd" id="1_wmyp6"]
+[ext_resource type="Texture2D" uid="uid://c6u4mv2ecvtel" path="res://example/assets/tileset.png" id="2_8clr1"]
+[ext_resource type="Script" uid="uid://bj3f5k0rtx2vv" path="res://addons/daicon/nodes/daicon_map.gd" id="2_pjyox"]
 [ext_resource type="MeshLibrary" uid="uid://rm1kdg06ylaf" path="res://example/mesh/tiles_mesh.tres" id="4_7cn0y"]
-[ext_resource type="Shader" uid="uid://bylposfd34arx" path="res://addons/daicon/shaders/blur_circle.gdshader" id="5_wmyp6"]
+[ext_resource type="Shader" uid="uid://dg8to3rkhyxqo" path="res://addons/daicon/shaders/blur_circle.gdshader" id="5_wmyp6"]
 [ext_resource type="PackedScene" uid="uid://bo8sog8wpw4n4" path="res://example/static_daicon.tscn" id="7_6rqat"]
 [ext_resource type="PackedScene" uid="uid://d1sgg3bial5f7" path="res://example/player.tscn" id="8_h7cfd"]
 
@@ -55,35 +55,35 @@ sources/0 = SubResource("TileSetAtlasSource_7cn0y")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6rqat"]
 shader = ExtResource("5_wmyp6")
-shader_parameter/CircleCentres = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/CircleCentres = Array[Vector2]([])
 shader_parameter/NumCircleCentres = 0
 shader_parameter/CircleRadius = 100.0
 shader_parameter/CircleBlur = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xiy6"]
 shader = ExtResource("5_wmyp6")
-shader_parameter/CircleCentres = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/CircleCentres = Array[Vector2]([])
 shader_parameter/NumCircleCentres = 0
 shader_parameter/CircleRadius = 100.0
 shader_parameter/CircleBlur = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h7cfd"]
 shader = ExtResource("5_wmyp6")
-shader_parameter/CircleCentres = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/CircleCentres = Array[Vector2]([])
 shader_parameter/NumCircleCentres = 0
 shader_parameter/CircleRadius = 100.0
 shader_parameter/CircleBlur = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ntg8m"]
 shader = ExtResource("5_wmyp6")
-shader_parameter/CircleCentres = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/CircleCentres = Array[Vector2]([])
 shader_parameter/NumCircleCentres = 0
 shader_parameter/CircleRadius = 100.0
 shader_parameter/CircleBlur = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8a8t6"]
 shader = ExtResource("5_wmyp6")
-shader_parameter/CircleCentres = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/CircleCentres = Array[Vector2]([])
 shader_parameter/NumCircleCentres = 0
 shader_parameter/CircleRadius = 100.0
 shader_parameter/CircleBlur = 0.01
@@ -137,6 +137,6 @@ tile_set = SubResource("TileSet_8clr1")
 
 [node name="StaticDaicon" parent="." instance=ExtResource("7_6rqat")]
 position = Vector2(161, 107)
-y_3d = -1
+y_3d = -1.0
 
 [node name="Player" parent="." instance=ExtResource("8_h7cfd")]

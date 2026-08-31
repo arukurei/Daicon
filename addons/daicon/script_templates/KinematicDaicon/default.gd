@@ -9,11 +9,12 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
+		#var body := core as CharacterBody3D
 		#LOGIC
 	
 		#LOGIC END
 	
-		#d3.move_and_slide()
+		#body.move_and_slide()
 		#update_pos()
 		pass
 

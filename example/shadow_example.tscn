@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dq0owsrd447fy"]
+[gd_scene load_steps=14 format=3 uid="uid://dq0owsrd447fy"]
 
-[ext_resource type="Script" uid="uid://eidynimsomkm" path="res://addons/daicon/nodes/daicon_node.gd" id="1_rm2qp"]
-[ext_resource type="Texture2D" uid="uid://dldfpbgt8823o" path="res://example/assets/tileset.png" id="2_geley"]
-[ext_resource type="Script" uid="uid://baffwcreehsd7" path="res://addons/daicon/nodes/daicon_map_node.gd" id="3_a23ui"]
+[ext_resource type="Script" uid="uid://b7kwquhi1movj" path="res://addons/daicon/nodes/daicon_node.gd" id="1_rm2qp"]
+[ext_resource type="Texture2D" uid="uid://c6u4mv2ecvtel" path="res://example/assets/tileset.png" id="2_geley"]
+[ext_resource type="Script" uid="uid://bj3f5k0rtx2vv" path="res://addons/daicon/nodes/daicon_map.gd" id="3_a23ui"]
 [ext_resource type="MeshLibrary" uid="uid://rm1kdg06ylaf" path="res://example/mesh/tiles_mesh.tres" id="4_uaaxx"]
-[ext_resource type="Script" uid="uid://geccrkqt6jtq" path="res://addons/daicon/nodes/daicon_shadow.gd" id="6_uaaxx"]
-[ext_resource type="Texture2D" uid="uid://bwnwa7yih5ous" path="res://example/assets/shadow.png" id="6_uhfqq"]
-[ext_resource type="Texture2D" uid="uid://c8yh603f8hoqt" path="res://example/assets/basic.png" id="8_qtgls"]
-[ext_resource type="Script" uid="uid://cci852k2i01yu" path="res://example/code/shadow_example_body.gd" id="9_qtgls"]
+[ext_resource type="Script" uid="uid://c4jpvau84mi7k" path="res://addons/daicon/nodes/daicon_shadow.gd" id="6_uaaxx"]
+[ext_resource type="Texture2D" uid="uid://rvj40e0hpbx3" path="res://example/assets/shadow.png" id="6_uhfqq"]
+[ext_resource type="Texture2D" uid="uid://1dtkll3jibsk" path="res://example/assets/basic.png" id="8_qtgls"]
+[ext_resource type="Script" uid="uid://cnnhpb23fvrgt" path="res://example/code/shadow_example_body.gd" id="9_qtgls"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uhfqq"]
 texture = ExtResource("2_geley")
@@ -41,20 +41,16 @@ custom_data_layer_0/name = "Item"
 custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_uhfqq")
 
-[sub_resource type="BoxMesh" id="BoxMesh_uaaxx"]
+[sub_resource type="BoxMesh" id="BoxMesh_uhfqq"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uhfqq"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qtgls"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vstwl"]
-size = Vector3(1, 0, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_a23ui"]
-size = Vector3(1, 0, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0cky5"]
+size = Vector3(0.9, 0.9, 0.9)
 
 [node name="Daicon" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_rm2qp")
-metadata/_custom_type_script = "uid://eidynimsomkm"
 
 [node name="DaiconMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -69,96 +65,217 @@ layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(-1, 0, 0, -65537, 0, 0, -65538, 0, 0, -2, 0, 0, -3, 0, 0, -65539, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -131072, 0, 0, -65536, 0, 0, -65535, 0, 0, -131071, 0, 0, -196607, 0, 0, -196606, 0, 0, -131070, 0, 0, -65534, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -196605, 0, 0, -131069, 0, 0, -65533, 0, 0, 3, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 65532, 0, 0, -4, 0, 0, -65540, 0, 0, -131076, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -65532, 0, 0, 4, 0, 0, 5, 0, 0, -65531, 0, 0, -196603, 0, 0, -131067, 0, 0, -262139, 0, 0, -196613, 0, 0, -131077, 0, 0, -65541, 0, 0, -5, 0, 0, 65531, 0, 0, 65530, 0, 0, -6, 0, 0, -131078, 0, 0, -65542, 0, 0, -196614, 0, 0)
 script = ExtResource("3_a23ui")
 mesh_library = ExtResource("4_uaaxx")
-metadata/_custom_type_script = "uid://baffwcreehsd7"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -23)
 zoom = Vector2(4, 4)
 
-[node name="Coloration" type="CharacterBody2D" parent="." node_paths=PackedStringArray("mesh", "shape")]
+[node name="Coloration" type="Node2D" parent="." node_paths=PackedStringArray("mesh_node", "shape_node", "whisker_node", "whisker_shape_node", "shader_cast_node")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-51, -23)
 script = ExtResource("9_qtgls")
-tile_size = 16
-mesh = NodePath("KinematicBody3D/Mesh")
-shape = NodePath("KinematicBody3D/Shape")
-current_mesh = SubResource("BoxMesh_uaaxx")
-current_shape = SubResource("BoxShape3D_uhfqq")
-child_count = 4
+mesh_node = NodePath("KinematicBody3D/MeshInstance3D")
 mesh_properties = {
-"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
-"CastShadow": 1,
-"CustomAABB": AABB(0, 0, 0, 0, 0, 0),
-"ExtraCullMargin": 0.0,
-"GILightmapScale": 0,
-"GIMode": 1,
-"IgnoreOcclusionCulling": false,
-"LODBais": 1.0,
-"Layers": 1,
-"MaterialOverlay": null,
-"MaterialOverride": null,
-"Mesh": SubResource("BoxMesh_uaaxx"),
-"Name": &"Mesh",
-"Position": Vector3(0, 0, 0),
-"Quaternion": Quaternion(0, 0, 0, 1),
-"Rotation": Vector3(0, 0, 0),
-"RotationEditMode": 0,
-"RotationOrder": 2,
-"Scale": Vector3(1, 1, 1),
-"Skeleton": NodePath(".."),
-"Skin": null,
-"SortingOffset": 0.0,
-"SortingUseAABBCenter": true,
-"TopLevel": false,
-"Transparency": 0.0,
-"VisibilityRangeBegin": 0.0,
-"VisibilityRangeBeginMargin": 0.0,
-"VisibilityRangeEnd": 0.0,
-"VisibilityRangeEndMargin": 0.0,
-"VisibilityRangeFadeMode": 0
+"Class": "MeshInstance3D",
+"Meta": {},
+"Name": "MeshInstance3D",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"cast_shadow": 1,
+"custom_aabb": AABB(0, 0, 0, 0, 0, 0),
+"editor_description": "",
+"extra_cull_margin": 0.0,
+"gi_lightmap_texel_scale": 1.0,
+"gi_mode": 1,
+"ignore_occlusion_culling": false,
+"layers": 1,
+"lod_bias": 1.0,
+"mesh": SubResource("BoxMesh_uhfqq"),
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 0),
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"skeleton": NodePath(".."),
+"sorting_offset": 0.0,
+"sorting_use_aabb_center": true,
+"top_level": false,
+"transparency": 0.0,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visibility_range_begin": 0.0,
+"visibility_range_begin_margin": 0.0,
+"visibility_range_end": 0.0,
+"visibility_range_end_margin": 0.0,
+"visibility_range_fade_mode": 0,
+"visible": true
+},
+"Script": ""
 }
+shape_node = NodePath("KinematicBody3D/CollisionShape3D")
 shape_properties = {
-"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
-"Disabled": false,
-"Name": &"Shape",
-"Position": Vector3(0, 0, 0),
-"Quaternion": Quaternion(0, 0, 0, 1),
-"Rotation": Vector3(0, 0, 0),
-"RotationEditMode": 0,
-"RotationOrder": 2,
-"Scale": Vector3(1, 1, 1),
-"Shape": SubResource("BoxShape3D_uhfqq"),
-"TopLevel": false
+"Class": "CollisionShape3D",
+"Meta": {},
+"Name": "CollisionShape3D",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"debug_color": Color(0, 0.6, 0.7, 0.42),
+"debug_fill": true,
+"disabled": false,
+"editor_description": "",
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 0),
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"shape": SubResource("BoxShape3D_qtgls"),
+"top_level": false,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true
+},
+"Script": ""
 }
-metadata/_custom_type_script = "uid://dce71mslqcpnm"
+whisker_node = NodePath("KinematicBody3D/Area3D")
+whisker_properties = {
+"Class": "Area3D",
+"Meta": {},
+"Name": "Area3D",
+"Properties": {
+"_import_path": NodePath(""),
+"angular_damp": 0.1,
+"angular_damp_space_override": 0,
+"audio_bus_name": &"Master",
+"audio_bus_override": false,
+"auto_translate_mode": 0,
+"collision_layer": 1,
+"collision_mask": 1,
+"collision_priority": 1.0,
+"disable_mode": 0,
+"editor_description": "",
+"gravity": 9.8,
+"gravity_direction": Vector3(0, -1, 0),
+"gravity_point": false,
+"gravity_point_center": Vector3(0, -1, 0),
+"gravity_point_unit_distance": 0.0,
+"gravity_space_override": 0,
+"input_capture_on_drag": false,
+"input_ray_pickable": true,
+"linear_damp": 0.1,
+"linear_damp_space_override": 0,
+"monitorable": true,
+"monitoring": true,
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 1.1),
+"priority": 0,
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"reverb_bus_amount": 0.0,
+"reverb_bus_enabled": false,
+"reverb_bus_name": &"Master",
+"reverb_bus_uniformity": 0.0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"top_level": false,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true,
+"wind_attenuation_factor": 0.0,
+"wind_force_magnitude": 0.0,
+"wind_source_path": NodePath("")
+},
+"Script": ""
+}
+whisker_shape_node = NodePath("KinematicBody3D/Area3D/Shape")
+whisker_shape_properties = {
+"Class": "CollisionShape3D",
+"Meta": {},
+"Name": "Shape",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"debug_color": Color(0, 0.6, 0.7, 0.42),
+"debug_fill": true,
+"disabled": false,
+"editor_description": "",
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 0),
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"shape": SubResource("BoxShape3D_0cky5"),
+"top_level": false,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true
+},
+"Script": ""
+}
+shader_cast_node = NodePath("KinematicBody3D/RayCast3D")
+shader_cast_properties = {
+"Class": "RayCast3D",
+"Meta": {},
+"Name": "RayCast3D",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"collide_with_areas": false,
+"collide_with_bodies": true,
+"collision_mask": 1,
+"debug_shape_custom_color": Color(0, 0, 0, 1),
+"debug_shape_thickness": 2,
+"editor_description": "",
+"enabled": true,
+"exclude_parent": true,
+"hit_back_faces": true,
+"hit_from_inside": false,
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 0),
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"target_position": Vector3(0, 5, 5),
+"top_level": false,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true
+},
+"Script": ""
+}
+metadata/_custom_type_script = "uid://7h31iy1d6nmc"
 
-[node name="DaiconShadow" type="Sprite2D" parent="Coloration" node_paths=PackedStringArray("daicon_parent", "shape")]
+[node name="DaiconShadow" type="Sprite2D" parent="Coloration"]
+show_behind_parent = true
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(0, 8)
+position = Vector2(0, 7.9896727)
 texture = ExtResource("6_uhfqq")
 script = ExtResource("6_uaaxx")
-daicon_parent = NodePath("..")
-tile_size = 16
-min_distance = 2.0
-shadow_mode = 1
-shape = NodePath("KinematicBody3D/ShadowShape")
-current_shape = SubResource("BoxShape3D_vstwl")
-shape_properties = {
-"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
-"Disabled": false,
-"Name": &"ShadowShape",
-"Position": Vector3(0, 0, 0),
-"Quaternion": Quaternion(0, 0, 0, 1),
-"Rotation": Vector3(0, 0, 0),
-"RotationEditMode": 0,
-"RotationOrder": 2,
-"Scale": Vector3(1, 1, 1),
-"Shape": SubResource("BoxShape3D_vstwl"),
-"TopLevel": false
-}
-metadata/_custom_type_script = "uid://geccrkqt6jtq"
+shadow_opacity = 1.0
+pivot_offset = Vector2(0, 8)
+metadata/_custom_type_script = "uid://c4jpvau84mi7k"
 
 [node name="Sprite2D" type="Sprite2D" parent="Coloration"]
 position = Vector2(-1, -1)
@@ -168,89 +285,212 @@ flip_h = true
 hframes = 10
 vframes = 16
 
-[node name="Discoloration" type="CharacterBody2D" parent="." node_paths=PackedStringArray("mesh", "shape")]
+[node name="Discoloration" type="Node2D" parent="." node_paths=PackedStringArray("mesh_node", "shape_node", "whisker_node", "whisker_shape_node", "shader_cast_node")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(52, -23)
 script = ExtResource("9_qtgls")
-tile_size = 16
-mesh = NodePath("KinematicBody3D/Mesh")
-shape = NodePath("KinematicBody3D/Shape")
-current_mesh = SubResource("BoxMesh_uaaxx")
-current_shape = SubResource("BoxShape3D_uhfqq")
-child_count = 4
+mesh_node = NodePath("KinematicBody3D/MeshInstance3D")
 mesh_properties = {
-"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
-"CastShadow": 1,
-"CustomAABB": AABB(0, 0, 0, 0, 0, 0),
-"ExtraCullMargin": 0.0,
-"GILightmapScale": 0,
-"GIMode": 1,
-"IgnoreOcclusionCulling": false,
-"LODBais": 1.0,
-"Layers": 1,
-"MaterialOverlay": null,
-"MaterialOverride": null,
-"Mesh": SubResource("BoxMesh_uaaxx"),
-"Name": &"Mesh",
-"Position": Vector3(0, 0, 0),
-"Quaternion": Quaternion(0, 0, 0, 1),
-"Rotation": Vector3(0, 0, 0),
-"RotationEditMode": 0,
-"RotationOrder": 2,
-"Scale": Vector3(1, 1, 1),
-"Skeleton": NodePath(".."),
-"Skin": null,
-"SortingOffset": 0.0,
-"SortingUseAABBCenter": true,
-"TopLevel": false,
-"Transparency": 0.0,
-"VisibilityRangeBegin": 0.0,
-"VisibilityRangeBeginMargin": 0.0,
-"VisibilityRangeEnd": 0.0,
-"VisibilityRangeEndMargin": 0.0,
-"VisibilityRangeFadeMode": 0
+"Class": "MeshInstance3D",
+"Meta": {},
+"Name": "MeshInstance3D",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"cast_shadow": 1,
+"custom_aabb": AABB(0, 0, 0, 0, 0, 0),
+"editor_description": "",
+"extra_cull_margin": 0.0,
+"gi_lightmap_texel_scale": 1.0,
+"gi_mode": 1,
+"ignore_occlusion_culling": false,
+"layers": 1,
+"lod_bias": 1.0,
+"mesh": SubResource("BoxMesh_uhfqq"),
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 0),
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"skeleton": NodePath(".."),
+"sorting_offset": 0.0,
+"sorting_use_aabb_center": true,
+"top_level": false,
+"transparency": 0.0,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visibility_range_begin": 0.0,
+"visibility_range_begin_margin": 0.0,
+"visibility_range_end": 0.0,
+"visibility_range_end_margin": 0.0,
+"visibility_range_fade_mode": 0,
+"visible": true
+},
+"Script": ""
 }
+shape_node = NodePath("KinematicBody3D/CollisionShape3D")
 shape_properties = {
-"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
-"Disabled": false,
-"Name": &"Shape",
-"Position": Vector3(0, 0, 0),
-"Quaternion": Quaternion(0, 0, 0, 1),
-"Rotation": Vector3(0, 0, 0),
-"RotationEditMode": 0,
-"RotationOrder": 2,
-"Scale": Vector3(1, 1, 1),
-"Shape": SubResource("BoxShape3D_uhfqq"),
-"TopLevel": false
+"Class": "CollisionShape3D",
+"Meta": {},
+"Name": "CollisionShape3D",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"debug_color": Color(0, 0.6, 0.7, 0.42),
+"debug_fill": true,
+"disabled": false,
+"editor_description": "",
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 0),
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"shape": SubResource("BoxShape3D_qtgls"),
+"top_level": false,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true
+},
+"Script": ""
 }
-metadata/_custom_type_script = "uid://dce71mslqcpnm"
+whisker_node = NodePath("KinematicBody3D/Area3D")
+whisker_properties = {
+"Class": "Area3D",
+"Meta": {},
+"Name": "Area3D",
+"Properties": {
+"_import_path": NodePath(""),
+"angular_damp": 0.1,
+"angular_damp_space_override": 0,
+"audio_bus_name": &"Master",
+"audio_bus_override": false,
+"auto_translate_mode": 0,
+"collision_layer": 1,
+"collision_mask": 1,
+"collision_priority": 1.0,
+"disable_mode": 0,
+"editor_description": "",
+"gravity": 9.8,
+"gravity_direction": Vector3(0, -1, 0),
+"gravity_point": false,
+"gravity_point_center": Vector3(0, -1, 0),
+"gravity_point_unit_distance": 0.0,
+"gravity_space_override": 0,
+"input_capture_on_drag": false,
+"input_ray_pickable": true,
+"linear_damp": 0.1,
+"linear_damp_space_override": 0,
+"monitorable": true,
+"monitoring": true,
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 1.1),
+"priority": 0,
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"reverb_bus_amount": 0.0,
+"reverb_bus_enabled": false,
+"reverb_bus_name": &"Master",
+"reverb_bus_uniformity": 0.0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"top_level": false,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true,
+"wind_attenuation_factor": 0.0,
+"wind_force_magnitude": 0.0,
+"wind_source_path": NodePath("")
+},
+"Script": ""
+}
+whisker_shape_node = NodePath("KinematicBody3D/Area3D/Shape")
+whisker_shape_properties = {
+"Class": "CollisionShape3D",
+"Meta": {},
+"Name": "Shape",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"debug_color": Color(0, 0.6, 0.7, 0.42),
+"debug_fill": true,
+"disabled": false,
+"editor_description": "",
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 0),
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"shape": SubResource("BoxShape3D_0cky5"),
+"top_level": false,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true
+},
+"Script": ""
+}
+shader_cast_node = NodePath("KinematicBody3D/RayCast3D")
+shader_cast_properties = {
+"Class": "RayCast3D",
+"Meta": {},
+"Name": "RayCast3D",
+"Properties": {
+"_import_path": NodePath(""),
+"auto_translate_mode": 0,
+"collide_with_areas": false,
+"collide_with_bodies": true,
+"collision_mask": 1,
+"debug_shape_custom_color": Color(0, 0, 0, 1),
+"debug_shape_thickness": 2,
+"editor_description": "",
+"enabled": true,
+"exclude_parent": true,
+"hit_back_faces": true,
+"hit_from_inside": false,
+"physics_interpolation_mode": 0,
+"position": Vector3(0, 0, 0),
+"process_mode": 0,
+"process_physics_priority": 0,
+"process_priority": 0,
+"process_thread_group": 0,
+"rotation": Vector3(0, 0, 0),
+"rotation_order": 2,
+"scale": Vector3(1, 1, 1),
+"target_position": Vector3(0, 5, 5),
+"top_level": false,
+"unique_name_in_owner": false,
+"visibility_parent": NodePath(""),
+"visible": true
+},
+"Script": ""
+}
+metadata/_custom_type_script = "uid://7h31iy1d6nmc"
 
-[node name="DaiconShadow" type="Sprite2D" parent="Discoloration" node_paths=PackedStringArray("daicon_parent", "shape")]
+[node name="DaiconShadow" type="Sprite2D" parent="Discoloration"]
+show_behind_parent = true
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(0, 8)
+position = Vector2(0, 7.9896727)
 texture = ExtResource("6_uhfqq")
 script = ExtResource("6_uaaxx")
-daicon_parent = NodePath("..")
-tile_size = 16
-min_distance = 0.5
-shape = NodePath("KinematicBody3D/ShadowShape")
-current_shape = SubResource("BoxShape3D_a23ui")
-shape_properties = {
-"Basis": Basis(1, 0, 0, 0, 1, 0, 0, 0, 1),
-"Disabled": false,
-"Name": &"ShadowShape",
-"Position": Vector3(0, 0, 0),
-"Quaternion": Quaternion(0, 0, 0, 1),
-"Rotation": Vector3(0, 0, 0),
-"RotationEditMode": 0,
-"RotationOrder": 2,
-"Scale": Vector3(1, 1, 1),
-"Shape": SubResource("BoxShape3D_a23ui"),
-"TopLevel": false
-}
-metadata/_custom_type_script = "uid://geccrkqt6jtq"
+shadow_opacity = 1.0
+pivot_offset = Vector2(0, 8)
+metadata/_custom_type_script = "uid://c4jpvau84mi7k"
 
 [node name="Sprite2D" type="Sprite2D" parent="Discoloration"]
 position = Vector2(-1, -1)

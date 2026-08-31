@@ -1,3 +1,14 @@
-.idea
-.venv
-.git
+# Godot 4+ specific ignores
+.godot/
+*.translation
+export.cfg
+export_presets.cfg
+/android/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# PyCharm / IDE (если работаешь в PyCharm с этим проектом)
+.idea/
+.venv/

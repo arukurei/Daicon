@@ -10,6 +10,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if not Engine.is_editor_hint():
+		#var body := core as RigidBody3D
 		#LOGIC
 	
 		#LOGIC END

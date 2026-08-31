@@ -1,3 +1,4 @@
+#example/code/shadow_example_body.gd
 @tool
 extends KinematicDaicon
 
@@ -16,17 +17,19 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
+		var body := core as CharacterBody3D
+		if not body: return
+		
 		movement_input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var direction := Vector3(movement_input.x, 0, movement_input.y).normalized()
 		
-		var y_vel = d3.velocity.y
-		d3.velocity = d3.velocity.move_toward(direction * SPEED, accelaration * delta)
-		d3.velocity.y = y_vel - gravity * delta
+		var y_vel = body.velocity.y
+		body.velocity = body.velocity.move_toward(direction * SPEED, accelaration * delta)
+		body.velocity.y = y_vel - gravity * delta
 		
-		if Input.is_action_just_pressed("ui_accept") and d3.is_on_floor():
-			d3.velocity.y += JUMP_VELOCITY
-			
-		d3.move_and_slide()
+		if Input.is_action_just_pressed("ui_accept") and body.is_on_floor(): body.velocity.y += JUMP_VELOCITY
+		
+		body.move_and_slide()
 		update_pos()
 
 func _validate_property(property: Dictionary) -> void:
