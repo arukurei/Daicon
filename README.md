@@ -20,6 +20,8 @@ Simulating 3D depth for a 2D game usually means picking between two established,
 2. **Placing 2D sprites inside a real 3D world** — simpler math, since the engine's own 3D pipeline handles depth and occlusion for you. The trade-off is that you now have to build and think in full 3D, and pixel-perfect 2D rendering is never fully achievable under any 3D projection — some distortion is unavoidable.
 Daicon takes a third path: it keeps objects as 2D nodes, but drives their position and depth using a lightweight 3D coordinate system under the hood. The goal is to get most of the benefits of approach 2 (simpler depth handling than hand-rolled 2D math) without fully committing to a 3D scene or losing 2D's pixel control.
 
+https://github.com/user-attachments/assets/388bd1bf-629e-49e4-8d5c-f3ae23a412f4
+
 ---
 
 ## Features
