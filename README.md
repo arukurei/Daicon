@@ -12,9 +12,6 @@ Its principle is to use 3D space calculations and math to move 2D objects. In th
 
 ![NODES](https://github.com/user-attachments/assets/fd7c5759-a461-488b-a838-b340924e372b)
 
-> [!IMPORTANT]
-> Requires Godot **4.5+** with the Forward+ renderer.
-
 ## Why Daicon?
  
 Simulating 3D depth for a 2D game usually means picking between two established, imperfect approaches:
@@ -51,6 +48,9 @@ Daicon takes a third path: it keeps objects as 2D nodes, but drives their positi
 > [!NOTE]
 > Daicon ships with ready-made script templates in `addons/daicon/script_templates`. Copy them into your project's own `script_templates` folder to have new Daicon scripts pre-wired when you create them from the editor.
 
+> [!IMPORTANT]
+> Requires Godot **4.5+** with the Forward+ renderer.
+
 ## Quick Start
 
 1. Add a `Daicon`-family node (e.g. `KinematicDaicon`) to your scene.
@@ -73,6 +73,6 @@ Daicon takes a third path: it keeps objects as 2D nodes, but drives their positi
 
 If you like Daicon and want to support its development, you can donate via [PayPal](https://www.paypal.com/donate/?hosted_button_id=LF5SHGQDXK2PG) or [ItchIO](https://alkrei.itch.io/daicon). Your support is very much appreciated and helps keep the project going!
 
-## License
+### License
 
 Daicon is released under the [MIT License](LICENSE).
