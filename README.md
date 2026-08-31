@@ -10,6 +10,10 @@
 
 Its principle is to use 3D space calculations and math to move 2D objects. In this way it simulates the 3D depth of an environment while staying in a 2D dimension. The addon provides a set of new nodes and additional tools that combine 2D and 3D capabilities simultaneously.
 
+https://github.com/user-attachments/assets/388bd1bf-629e-49e4-8d5c-f3ae23a412f4
+
+---
+
 ## Why Daicon?
  
 Simulating 3D depth for a 2D game usually means picking between two established, imperfect approaches:
@@ -17,8 +21,6 @@ Simulating 3D depth for a 2D game usually means picking between two established,
 1. **Modeling 3D mathematically inside a 2D world** — e.g. computing depth and occlusion by hand for every wall, ramp, and obstacle. This works, and many games use it, but the complexity grows fast with functionality: a flat wall is simple to handle, but a sloped surface can be several times harder to get right than a straight one.
 2. **Placing 2D sprites inside a real 3D world** — simpler math, since the engine's own 3D pipeline handles depth and occlusion for you. The trade-off is that you now have to build and think in full 3D, and pixel-perfect 2D rendering is never fully achievable under any 3D projection — some distortion is unavoidable.
 Daicon takes a third path: it keeps objects as 2D nodes, but drives their position and depth using a lightweight 3D coordinate system under the hood. The goal is to get most of the benefits of approach 2 (simpler depth handling than hand-rolled 2D math) without fully committing to a 3D scene or losing 2D's pixel control.
-
-https://github.com/user-attachments/assets/388bd1bf-629e-49e4-8d5c-f3ae23a412f4
 
 ---
 
