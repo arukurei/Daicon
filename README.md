@@ -51,6 +51,8 @@ Daicon takes a third path: it keeps objects as 2D nodes, but drives their positi
 > [!IMPORTANT]
 > Requires Godot **4.5+** with the Forward+ renderer.
 
+---
+
 ## Quick Start
 
 1. Add a `Daicon`-family node (e.g. `KinematicDaicon`) to your scene.
