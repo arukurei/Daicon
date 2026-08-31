@@ -12,8 +12,6 @@ Its principle is to use 3D space calculations and math to move 2D objects. In th
 
 https://github.com/user-attachments/assets/388bd1bf-629e-49e4-8d5c-f3ae23a412f4
 
----
-
 ## Why Daicon?
  
 Simulating 3D depth for a 2D game usually means picking between two established, imperfect approaches:
