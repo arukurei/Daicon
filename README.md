@@ -10,8 +10,6 @@
 
 Its principle is to use 3D space calculations and math to move 2D objects. In this way it simulates the 3D depth of an environment while staying in a 2D dimension. The addon provides a set of new nodes and additional tools that combine 2D and 3D capabilities simultaneously.
 
-![NODES](https://github.com/user-attachments/assets/fd7c5759-a461-488b-a838-b340924e372b)
-
 ## Why Daicon?
  
 Simulating 3D depth for a 2D game usually means picking between two established, imperfect approaches:
@@ -38,6 +36,8 @@ https://github.com/user-attachments/assets/388bd1bf-629e-49e4-8d5c-f3ae23a412f4
 - Custom shaders (`circle`, `blur_circle`) for shadow and depth effects
 - Editor script templates for every node type, so new scripts are pre-wired
 - Example project included, showing all node types in action
+
+![NODES](https://github.com/user-attachments/assets/fd7c5759-a461-488b-a838-b340924e372b)
 
 ---
 
