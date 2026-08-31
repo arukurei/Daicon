@@ -77,6 +77,8 @@ Daicon takes a third path: it keeps objects as 2D nodes, but drives their positi
 
 If you like Daicon and want to support its development, you can donate via [PayPal](https://www.paypal.com/donate/?hosted_button_id=LF5SHGQDXK2PG) or [ItchIO](https://alkrei.itch.io/daicon). Your support is very much appreciated and helps keep the project going!
 
-### License
+---
+
+## License
 
 Daicon is released under the [MIT License](LICENSE).
